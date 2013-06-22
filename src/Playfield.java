@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import model.spielautomat;
+
 
 public class Playfield extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -19,8 +21,12 @@ public class Playfield extends JPanel{
 	JTextField creditText, prizeText;
 	JButton startBtn, stopBtn;
 	JLabel[] automat = new JLabel[4]; 
+	spielautomat game;
 
 	Playfield(){
+		game = spielautomat.getInstance();
+		game.addspielListener( new SlotMachineListener(this) );
+		
 		panelCreditPrize = new JPanel();
 		panelSlotMachine = new JPanel();
 		panelStartStopBtn = new JPanel();
@@ -58,6 +64,8 @@ public class Playfield extends JPanel{
 		//Third Panel - start/stop buttons
 		this.startBtn = new JButton("start");
 		this.stopBtn = new JButton("stop");
+		this.startBtn.addActionListener( new ButtonListener(this) );
+		this.stopBtn.addActionListener( new ButtonListener(this) );
 		
 		panelStartStopBtn.add(this.startBtn);
 		panelStartStopBtn.add(this.stopBtn);

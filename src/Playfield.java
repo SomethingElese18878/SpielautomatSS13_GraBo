@@ -1,20 +1,24 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 
 public class Playfield extends JPanel{
-	
 	private static final long serialVersionUID = 1L;
 	JPanel panelCreditPrize, panelSlotMachine, panelStartStopBtn;
 	JLabel credit, prize;
 	JTextField creditText, prizeText;
-	
 	JButton startBtn, stopBtn;
+	JLabel[] automat = new JLabel[4]; 
 
 	Playfield(){
 		panelCreditPrize = new JPanel();
@@ -27,11 +31,12 @@ public class Playfield extends JPanel{
 		panelCreditPrize.setLayout( new GridLayout(2,2) );
 		
 		this.credit = new JLabel("Credit");
-		this.credit.setFont(this.credit.getFont().deriveFont(60));
 		this.prize = new JLabel("Prize");
 		
 		this.creditText = new JTextField("100");
+		this.creditText.setFont( new Font("Arial", Font.PLAIN ,20));
 		this.prizeText = new JTextField("0");
+		this.prizeText.setFont( new Font("Arial", Font.PLAIN ,20));
 		
 		this.panelCreditPrize.add(this.credit);
 		this.panelCreditPrize.add(this.prize);
@@ -39,6 +44,16 @@ public class Playfield extends JPanel{
 		this.panelCreditPrize.add(this.prizeText);
 		
 		//Second Panel - slot machine
+		panelSlotMachine.setLayout( new GridBagLayout() );
+		
+		for(int i = 0; i < 4; i++){
+			automat[i] = new JLabel("1", JLabel.CENTER);
+			automat[i].setPreferredSize( new Dimension(50, 50) );
+			automat[i].setFont( new Font("Arial", Font.PLAIN, 28));
+			automat[i].setBorder( new LineBorder(Color.RED, 3) );
+
+			panelSlotMachine.add(automat[i]);
+		}
 		
 		//Third Panel - start/stop buttons
 		this.startBtn = new JButton("start");

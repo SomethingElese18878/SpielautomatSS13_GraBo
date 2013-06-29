@@ -25,17 +25,17 @@ public class Playfield extends JPanel{
 	Integer[] numerics;
 
 	Playfield(){
-		game = spielautomat.getInstance();
-		game.addspielListener( new SlotMachineListener(this) );
+		this.game = spielautomat.getInstance();
+		this.game.addspielListener( new SlotMachineListener(this) );
 		
-		panelCreditPrize = new JPanel();
-		panelSlotMachine = new JPanel();
-		panelStartStopBtn = new JPanel();
+		this.panelCreditPrize = new JPanel();
+		this.panelSlotMachine = new JPanel();
+		this.panelStartStopBtn = new JPanel();
 		
 		this.setLayout( new BorderLayout() );
 		
 		//First Panel - Credits, Prize
-		panelCreditPrize.setLayout( new GridLayout(2,2) );
+		this.panelCreditPrize.setLayout( new GridLayout(2,2) );
 		
 		this.credit = new JLabel("Credit");
 		this.prize = new JLabel("Prize");
@@ -51,15 +51,16 @@ public class Playfield extends JPanel{
 		this.panelCreditPrize.add(this.prizeText);
 		
 		//Second Panel - slot machine
-		panelSlotMachine.setLayout( new GridBagLayout() );
+		this.panelSlotMachine.setLayout( new GridBagLayout() );
+		this.numerics = this.game.getZiffern();
 		
 		for(int i = 0; i < 4; i++){
-			automat[i] = new JLabel("1", JLabel.CENTER);
+			automat[i] = new JLabel(this.numerics[i].toString(), JLabel.CENTER);
 			automat[i].setPreferredSize( new Dimension(50, 50) );
 			automat[i].setFont( new Font("Arial", Font.PLAIN, 28));
 			automat[i].setBorder( new LineBorder(Color.RED, 3) );
 
-			panelSlotMachine.add(automat[i]);
+			this.panelSlotMachine.add(automat[i]);
 		}
 		
 		//Third Panel - start/stop buttons
@@ -68,15 +69,13 @@ public class Playfield extends JPanel{
 		this.startBtn.addActionListener( new ButtonListener(this) );
 		this.stopBtn.addActionListener( new ButtonListener(this) );
 		
-		panelStartStopBtn.add(this.startBtn);
-		panelStartStopBtn.add(this.stopBtn);
-		
+		this.panelStartStopBtn.add(this.startBtn);
+		this.panelStartStopBtn.add(this.stopBtn);
 		
 		//add the three panels to playfield
 		this.add(this.panelCreditPrize, BorderLayout.NORTH);
 		this.add(this.panelSlotMachine, BorderLayout.CENTER);
 		this.add(this.panelStartStopBtn, BorderLayout.SOUTH);
-		
 	}
 	
 	public void startRolling(){
@@ -84,7 +83,7 @@ public class Playfield extends JPanel{
 	}
 	
 	public void printRollingNumerics(){
-		numerics = this.game.getZiffern();
+		this.numerics = this.game.getZiffern();
 		System.out.println( numerics[0] + numerics[1] + numerics[2] + numerics[3] );
 
 		for(int i = 0; i < 4; i++){

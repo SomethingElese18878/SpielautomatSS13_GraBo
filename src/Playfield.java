@@ -26,7 +26,7 @@ public class Playfield extends JPanel{
 
 	Playfield(){
 		this.game = spielautomat.getInstance();
-		this.game.addspielListener( new SlotMachineListener(this) );
+		this.game.addspielListener( new mySpielautomatListener(this) );
 		
 		this.panelCreditPrize = new JPanel();
 		this.panelSlotMachine = new JPanel();
@@ -84,12 +84,12 @@ public class Playfield extends JPanel{
 	
 	public void printRollingNumerics(){
 		this.numerics = this.game.getZiffern();
-		System.out.println( numerics[0] + numerics[1] + numerics[2] + numerics[3] );
+		System.out.println("numerics: " +  numerics[0] + numerics[1] + numerics[2] + numerics[3] );
 
 		for(int i = 0; i < 4; i++){
 			this.automat[i].setText(Integer.toString(numerics[i]));
 		}
-
 	}
-
+	
+	
 }

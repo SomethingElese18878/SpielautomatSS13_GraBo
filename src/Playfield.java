@@ -22,6 +22,7 @@ public class Playfield extends JPanel{
 	JButton startBtn, stopBtn;
 	JLabel[] automat = new JLabel[4]; 
 	spielautomat game;
+	Integer[] numerics;
 
 	Playfield(){
 		game = spielautomat.getInstance();
@@ -76,6 +77,20 @@ public class Playfield extends JPanel{
 		this.add(this.panelSlotMachine, BorderLayout.CENTER);
 		this.add(this.panelStartStopBtn, BorderLayout.SOUTH);
 		
+	}
+	
+	public void startRolling(){
+		this.game.startRollen();
+	}
+	
+	public void printRollingNumerics(){
+		numerics = this.game.getZiffern();
+		System.out.println( numerics[0] + numerics[1] + numerics[2] + numerics[3] );
+
+		for(int i = 0; i < 4; i++){
+			this.automat[i].setText(Integer.toString(numerics[i]));
+		}
+
 	}
 
 }

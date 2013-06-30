@@ -94,6 +94,10 @@ public class Playfield extends JPanel{
 		}
 	}
 	
+	public void createNewThread(){
+		this.rollingNumericsThread = new RollingNumericsThread(this);
+	}
+	
 	public void updateCreditPrize(){
 		this.creditText.setText( Integer.toString( this.game.getGuthaben() ) );
 		this.prizeText.setText( Integer.toString( this.game.getGewinn() ) );

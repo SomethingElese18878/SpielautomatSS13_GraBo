@@ -15,7 +15,6 @@ public class mySpielautomatListener implements spielautomatListener {
 	public void ModelChanged(spielautomatEvent arg0) {
 		// TODO Auto-generated method stub
 //		this.playfield.printRollingNumerics();
-
 		System.out.println("ModelChanged");
 	}
 

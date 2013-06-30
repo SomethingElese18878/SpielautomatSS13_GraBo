@@ -17,11 +17,13 @@ public class ButtonListener implements ActionListener {
 		
 		if(pushedButton.getText() == "start"){
 			System.out.println("--start pushed");
-			this.playfield.startRolling();
+//			this.playfield.startRolling();
+			this.playfield.rollingNumericsThread.start();
 		}
 		
 		if(pushedButton.getText() == "stop"){
 			System.out.println("--stop pushed");
+			this.playfield.rollingNumericsThread.stop();
 			this.playfield.game.stopRollen();
 			
 		}

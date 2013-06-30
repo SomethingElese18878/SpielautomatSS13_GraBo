@@ -14,7 +14,8 @@ public class mySpielautomatListener implements spielautomatListener {
 	@Override
 	public void ModelChanged(spielautomatEvent arg0) {
 		// TODO Auto-generated method stub
-		this.playfield.printRollingNumerics();
+//		this.playfield.printRollingNumerics();
+
 		System.out.println("ModelChanged");
 	}
 
@@ -22,6 +23,7 @@ public class mySpielautomatListener implements spielautomatListener {
 	public void StatusChanged(spielautomatEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println("StatusChanged");
+		this.playfield.updateCreditPrize();
 	}
 
 }

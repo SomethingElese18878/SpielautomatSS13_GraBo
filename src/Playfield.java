@@ -23,10 +23,13 @@ public class Playfield extends JPanel{
 	JLabel[] automat = new JLabel[4]; 
 	spielautomat game;
 	Integer[] numerics;
+	RollingNumericsThread rollingNumericsThread;
 
 	Playfield(){
 		this.game = spielautomat.getInstance();
 		this.game.addspielListener( new mySpielautomatListener(this) );
+		
+		this.rollingNumericsThread = new RollingNumericsThread(this);
 		
 		this.panelCreditPrize = new JPanel();
 		this.panelSlotMachine = new JPanel();
@@ -89,6 +92,11 @@ public class Playfield extends JPanel{
 		for(int i = 0; i < 4; i++){
 			this.automat[i].setText(Integer.toString(numerics[i]));
 		}
+	}
+	
+	public void updateCreditPrize(){
+		this.creditText.setText( Integer.toString( this.game.getGuthaben() ) );
+		this.prizeText.setText( Integer.toString( this.game.getGewinn() ) );
 	}
 	
 	

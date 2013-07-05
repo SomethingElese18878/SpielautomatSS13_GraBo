@@ -22,7 +22,7 @@ public class RollingNumericsThread extends Thread {
 //			System.out.println("THREADnumerics: " +  playfield.numerics[0] + playfield.numerics[1] + playfield.numerics[2] + playfield.numerics[3] );
 
 			for(int i = 0; i < 4; i++){
-				this.playfield.automat[i].setText(Integer.toString(playfield.numerics[i]));
+				this.playfield.lblAutomat[i].setText(Integer.toString(playfield.numerics[i]));
 			}
 		}
 		System.out.println("Thread EXIT");

@@ -17,17 +17,18 @@ import model.spielautomat;
 public class Playfield extends JPanel{
 	private static final long serialVersionUID = 1L;
 	JPanel panelCreditPrize, panelSlotMachine, panelStartStopBtn;
-	JLabel credit, prize;
-	JTextField creditText, prizeText;
-	JButton startBtn, stopBtn;
-	JLabel[] automat = new JLabel[4]; 
+	JLabel lblCredit, lblPrize;
+	JTextField tfCreditText, tfPrizeText;
+	JButton btnStart, btnStop;
+	JLabel[] lblAutomat = new JLabel[4]; 
+	
 	spielautomat game;
 	Integer[] numerics;
 	RollingNumericsThread rollingNumericsThread;
 
 	Playfield(){
 		this.game = spielautomat.getInstance();
-		this.game.addspielListener( new mySpielautomatListener(this) );
+		this.game.addspielListener( new MySpielautomatListener(this) );
 		
 		this.rollingNumericsThread = new RollingNumericsThread(this);
 		
@@ -40,40 +41,40 @@ public class Playfield extends JPanel{
 		//First Panel - Credits, Prize
 		this.panelCreditPrize.setLayout( new GridLayout(2,2) );
 		
-		this.credit = new JLabel("Credit");
-		this.prize = new JLabel("Prize");
+		this.lblCredit = new JLabel("Credit");
+		this.lblPrize = new JLabel("Prize");
 		
-		this.creditText = new JTextField("100");
-		this.creditText.setFont( new Font("Arial", Font.PLAIN ,20));
-		this.prizeText = new JTextField("0");
-		this.prizeText.setFont( new Font("Arial", Font.PLAIN ,20));
+		this.tfCreditText = new JTextField("100");
+		this.tfCreditText.setFont( new Font("Arial", Font.PLAIN ,20));
+		this.tfPrizeText = new JTextField("0");
+		this.tfPrizeText.setFont( new Font("Arial", Font.PLAIN ,20));
 		
-		this.panelCreditPrize.add(this.credit);
-		this.panelCreditPrize.add(this.prize);
-		this.panelCreditPrize.add(this.creditText);
-		this.panelCreditPrize.add(this.prizeText);
+		this.panelCreditPrize.add(this.lblCredit);
+		this.panelCreditPrize.add(this.lblPrize);
+		this.panelCreditPrize.add(this.tfCreditText);
+		this.panelCreditPrize.add(this.tfPrizeText);
 		
 		//Second Panel - slot machine
 		this.panelSlotMachine.setLayout( new GridBagLayout() );
 		this.numerics = this.game.getZiffern();
 		
 		for(int i = 0; i < 4; i++){
-			automat[i] = new JLabel(this.numerics[i].toString(), JLabel.CENTER);
-			automat[i].setPreferredSize( new Dimension(50, 50) );
-			automat[i].setFont( new Font("Arial", Font.PLAIN, 28));
-			automat[i].setBorder( new LineBorder(Color.RED, 3) );
+			lblAutomat[i] = new JLabel(this.numerics[i].toString(), JLabel.CENTER);
+			lblAutomat[i].setPreferredSize( new Dimension(50, 50) );
+			lblAutomat[i].setFont( new Font("Arial", Font.PLAIN, 28));
+			lblAutomat[i].setBorder( new LineBorder(Color.RED, 3) );
 
-			this.panelSlotMachine.add(automat[i]);
+			this.panelSlotMachine.add(lblAutomat[i]);
 		}
 		
 		//Third Panel - start/stop buttons
-		this.startBtn = new JButton("start");
-		this.stopBtn = new JButton("stop");
-		this.startBtn.addActionListener( new ButtonListener(this) );
-		this.stopBtn.addActionListener( new ButtonListener(this) );
+		this.btnStart = new JButton("start");
+		this.btnStop = new JButton("stop");
+		this.btnStart.addActionListener( new ButtonListener(this) );
+		this.btnStop.addActionListener( new ButtonListener(this) );
 		
-		this.panelStartStopBtn.add(this.startBtn);
-		this.panelStartStopBtn.add(this.stopBtn);
+		this.panelStartStopBtn.add(this.btnStart);
+		this.panelStartStopBtn.add(this.btnStop);
 		
 		//add the three panels to playfield
 		this.add(this.panelCreditPrize, BorderLayout.NORTH);
@@ -90,7 +91,7 @@ public class Playfield extends JPanel{
 		System.out.println("numerics: " +  numerics[0] + numerics[1] + numerics[2] + numerics[3] );
 
 		for(int i = 0; i < 4; i++){
-			this.automat[i].setText(Integer.toString(numerics[i]));
+			this.lblAutomat[i].setText(Integer.toString(numerics[i]));
 		}
 	}
 	
@@ -99,8 +100,8 @@ public class Playfield extends JPanel{
 	}
 	
 	public void updateCreditPrize(){
-		this.creditText.setText( Integer.toString( this.game.getGuthaben() ) );
-		this.prizeText.setText( Integer.toString( this.game.getGewinn() ) );
+		this.tfCreditText.setText( Integer.toString( this.game.getGuthaben() ) );
+		this.tfPrizeText.setText( Integer.toString( this.game.getGewinn() ) );
 	}
 	
 	

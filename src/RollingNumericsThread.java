@@ -2,6 +2,9 @@ import model.spielautomat;
 
 
 public class RollingNumericsThread extends Thread {
+	/***
+	 * DEPRECATED: Thread is already implemented with startRollen() - stopRollen()
+	 */
 	
 	Playfield playfield;
 	spielautomat game;

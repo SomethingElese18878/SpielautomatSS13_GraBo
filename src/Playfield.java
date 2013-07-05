@@ -30,8 +30,6 @@ public class Playfield extends JPanel{
 		this.game = spielautomat.getInstance();
 		this.game.addspielListener( new MySpielautomatListener(this) );
 		
-		this.rollingNumericsThread = new RollingNumericsThread(this);
-		
 		this.panelCreditPrize = new JPanel();
 		this.panelSlotMachine = new JPanel();
 		this.panelStartStopBtn = new JPanel();
@@ -93,10 +91,6 @@ public class Playfield extends JPanel{
 		for(int i = 0; i < 4; i++){
 			this.lblAutomat[i].setText(Integer.toString(numerics[i]));
 		}
-	}
-	
-	public void createNewThread(){
-		this.rollingNumericsThread = new RollingNumericsThread(this);
 	}
 	
 	public void updateCreditPrize(){

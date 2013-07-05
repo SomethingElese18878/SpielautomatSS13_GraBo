@@ -13,7 +13,7 @@ public class MySpielautomatListener implements spielautomatListener {
 
 	@Override
 	public void ModelChanged(spielautomatEvent arg0) {
-//		this.playfield.printRollingNumerics();
+		this.playfield.printRollingNumerics();
 		System.out.println("ModelChanged");
 	}
 
